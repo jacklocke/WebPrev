@@ -78,4 +78,13 @@ body,html {
   float: right;
   background-color: lightgray;
   resize: none;
+
+  vertical-align: middle;
+}
+
+#codebar select {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }

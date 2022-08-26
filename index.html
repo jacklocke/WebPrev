@@ -7,27 +7,37 @@
     <title>WebPrev</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="resize_container">
 
 
         <div id="code_left" class="codeditor">
-            <textarea class="codeblock" placeholder=" HTML"></textarea>
-            <textarea class="codeblock" placeholder=" JAVASCRIPT"></textarea>
-            <textarea class="codeblock" placeholder=" CSS"></textarea>
+            <textarea id="__HTML" class="codeblock" placeholder=" HTML"></textarea>
+            <textarea id="__JS" class="codeblock" placeholder=" JAVASCRIPT"></textarea>
+            <textarea id="__CSS" class="codeblock" placeholder=" CSS"></textarea>
         </div>
 
         <div class="resizer" id="dragSide"></div>
 
         <div id="code_right">
-            <iframe class="coderesult" srcdoc="WebPrev"></iframe>
-            <div>
-                <textarea id="codebar" readonly></textarea>
+            <iframe class="coderesult" srcdoc="try HTML sample01"></iframe>
+            <div id="codebar">
+                    <select name="language" id="language">
+                        <option value="0">Select Language:</option>
+                        <option value="1">HTML</option>
+                        <option value="2">CSS</option>
+                    </select>
+                    <select name="snippet" id="snippet">
+                        <option value="model">Select Snippet</option>
+                    </select>
             </div>
         </div>
 
     </div>
 </body>
+<script src="data.js"></script>
 <script src="scripts.js"></script>
 </html>

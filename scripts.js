@@ -1,4 +1,4 @@
-/* REAL TIME EDITOR */
+/***** REAL TIME EDITOR *****/
 
 window.onload = function() {
 
@@ -28,7 +28,66 @@ window.onload = function() {
   }
 
 
-/* RESIZABLE */
+/***** COMBOBOX *****/
+
+$("#language").change(function () {
+  $('#snippet').empty().append($('<option></option>').val('Select snippet').html('Select snippet'));
+  var matchVal = $("#language option:selected").text();
+  a.Data.filter(function (data) {
+      if (data.language == matchVal) {
+          $("#snippet").append($('<option></option>').val(data.path).html(data.snippet));
+      }
+  });
+});
+
+$('#snippet').change(function () {
+  //alert($(this).val());
+  //var getsnippetval = $('#snippet').val();
+  //console.log( $('#snippet').val() );
+  localStorage.setItem("selected", $('#snippet').val());
+  loadFiles($('#snippet').val());
+});
+
+/* SNIPPETS LOADER */
+function loadFiles(_sel) {
+
+  //localStorage.setItem("selected", null)
+
+  const pref = ''; // for different path
+  var HTMLfile = pref + 'snippets/' + _sel + '/index.html';
+  var CSSfile = pref + 'snippets/' + _sel + '/style.css';
+  var JSfile = pref + 'snippets/' + _sel + '/scripts.js';
+
+  $.get(HTMLfile, function(HTML_data) {
+    $('#__HTML').val(HTML_data);
+    $.get(CSSfile, function(CSS_data) {
+      $('#__CSS').val(CSS_data);
+      $.get(JSfile, function(JS_data) {
+        $('#__JS').val(JS_data);
+
+        // Update iframe content on last file loaded
+        var oneTA = document.getElementById("__HTML")
+        oneTA.dispatchEvent(new Event('input', {bubbles:true}));
+
+      });
+    });
+  }); 
+
+  //TODO can I load without execute it? now js is double executed
+
+
+}
+
+//TODO load if localStorage ?
+try {
+  var _selected = localStorage.getItem("selected");
+  //loadFiles(_selected);
+} catch (error) {
+  
+}
+
+
+/***** RESIZABLE *****/
 
 document.addEventListener('DOMContentLoaded', function () {
   // Query element
@@ -70,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function () {
       rightSide.style.userSelect = 'none';
       rightSide.style.pointerEvents = 'none';
 
-      document.getElementById('codebar').innerHTML = 'It was a dark and stormy night…';
   };
 
   const mouseUpHandler = function () {
