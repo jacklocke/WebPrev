@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebPrev</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="resize_container">
+
+
+        <div id="code_left" class="codeditor">
+            <textarea class="codeblock" placeholder=" HTML"></textarea>
+            <textarea class="codeblock" placeholder=" JAVASCRIPT"></textarea>
+            <textarea class="codeblock" placeholder=" CSS"></textarea>
+        </div>
+
+        <div class="resizer" id="dragSide"></div>
+
+        <div id="code_right">
+            <iframe class="coderesult" srcdoc="WebPrev"></iframe>
+            <div>
+                <textarea id="codebar" readonly></textarea>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="scripts.js"></script>
+</html>
