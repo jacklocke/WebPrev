@@ -8,16 +8,49 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!--highlighter css-->
+    <link rel="stylesheet" href="./lib/Prism/prism.css">
+    <link rel="stylesheet" href="./lib/Prism/highlighter.css">
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="resize_container">
 
 
         <div id="code_left" class="codeditor">
-            <textarea id="__HTML" class="codeblock" placeholder=" HTML"></textarea>
-            <textarea id="__JS" class="codeblock" placeholder=" JAVASCRIPT"></textarea>
-            <textarea id="__CSS" class="codeblock" placeholder=" CSS"></textarea>
+
+            <div class="codeblock">
+                <textarea id="__HTML" class="editingArea" placeholder="HTML"
+                                spellcheck="false" oninput="update(this.value, 1); sync_scroll(this);"
+                                onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+                <pre id="__HTMLhighlightArea" aria-hidden="true">
+                    <code class="language-html" id="html_highlighting-content">
+                    </code>
+                </pre>
+            </div>
+
+            <div class="codeblock">
+                <textarea id="__JS" class="editingArea" placeholder="JAVASCRIPT"
+                                spellcheck="false" oninput="update(this.value, 2); sync_scroll(this);"
+                                onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+                <pre id="__JShighlightArea" aria-hidden="true">
+                    <code class="language-js" id="js_highlighting-content">
+                    </code>
+                </pre>
+            </div>
+
+            <div class="codeblock">
+                <textarea id="__CSS" class="editingArea" placeholder="CSS"
+                                spellcheck="false" oninput="update(this.value, 3); sync_scroll(this);"
+                                onscroll="sync_scroll(this);" onkeydown="check_tab(this, event);"></textarea>
+                <pre id="__CSShighlightArea" aria-hidden="true">
+                    <code class="language-css" id="css_highlighting-content">
+                    </code>
+                </pre>
+            </div>
+
         </div>
 
         <div class="resizer" id="dragSide"></div>
@@ -33,6 +66,8 @@
                     <select name="snippet" id="snippet">
                         <option value="model">Select Snippet</option>
                     </select>
+
+                    <span class="credits">Syntax highlighting by <a href="https://prismjs.com">Prismjs</a></span>
             </div>
         </div>
 
@@ -40,4 +75,7 @@
 </body>
 <script src="data.js"></script>
 <script src="scripts.js"></script>
+<!--highlighter js-->
+<script src="./lib/Prism/prism.js"></script>
+<script src="./lib/Prism/highlighter.js"></script>
 </html>

@@ -31,7 +31,7 @@ window.onload = function() {
 /***** COMBOBOX *****/
 
 $("#language").change(function () {
-  $('#snippet').empty().append($('<option></option>').val('Select snippet').html('Select snippet'));
+  $('#snippet').empty().append($('<option></option>').val('Select Snippet').html('Select Snippet'));
   var matchVal = $("#language option:selected").text();
   a.Data.filter(function (data) {
       if (data.language == matchVal) {
@@ -66,8 +66,12 @@ function loadFiles(_sel) {
         $('#__JS').val(JS_data);
 
         // Update iframe content on last file loaded
-        var oneTA = document.getElementById("__HTML")
-        oneTA.dispatchEvent(new Event('input', {bubbles:true}));
+        var htmlTA = document.getElementById("__HTML")
+        htmlTA.dispatchEvent(new Event('input', {bubbles:true}));
+        var jsTA = document.getElementById("__JS")
+        jsTA.dispatchEvent(new Event('input', {bubbles:true}));
+        var cssTA = document.getElementById("__CSS")
+        cssTA.dispatchEvent(new Event('input', {bubbles:true}));
 
       });
     });

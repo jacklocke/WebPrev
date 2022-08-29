@@ -32,6 +32,7 @@ body,html {
 }
 
 .codeblock{
+  position: relative;
   float:left;
   height: 33.3vh; /* at start */
   width: 100%;
@@ -40,12 +41,24 @@ body,html {
   resize: vertical; max-height: 80vh; min-height: 5vh;
 }
 
-.codeblock textarea{
-  font-family: 'Fira Mono', monospace;
+.codeblock *{
+  /*font-family: 'Fira Mono', monospace;*/
   height:100%;
   width:100%;
-
   resize: none;
+
+     /* Both elements need the same text and space styling so they are directly on top of each other */
+     margin: 0;
+     padding: 0;
+     border: 0;
+ /*    width: calc(100% - 32px);
+     height: 150px; */
+ 
+         /* Also add text styles to highlighing tokens */
+         font-size: 15pt;
+         font-family: monospace;
+         line-height: 20pt;
+         tab-size: 2;
 }
 
 
@@ -79,6 +92,8 @@ body,html {
   background-color: lightgray;
   resize: none;
 
+  align-items: right;
+
   vertical-align: middle;
 }
 
@@ -87,4 +102,12 @@ body,html {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+#codebar .credits {
+  position: absolute;
+  width: fit-content;
+  right: 10px;
+  bottom: min(1vh, 3px);
+  font-size: max(1vh, 12px);
 }
