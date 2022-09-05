@@ -26,4 +26,5 @@ var a = {
 ]};
 
 
-// TODO dynamically create language combobox
+// TODO dynamically use for create language combobox
+// TODO use a json instead

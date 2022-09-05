@@ -7,26 +7,62 @@
     <title>List of Snippets</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="data.js"></script>
+    <script src="./snippets/data.js"></script>
 
     <style>
-            .listbtn{
-                padding: 5px;
-                margin: 10px;
+            body {
+                background-color: gray;
             }
+
+            h2 {
+                font-size: 30px;
+            }
+
+            .listbtn{
+                display:inline-block;
+                padding:0.3em 1.2em;
+                margin:0 0.3em 0.3em 0;
+                border-radius:2em;
+                box-sizing: border-box;
+                text-decoration:none;
+                font-family:'Roboto',sans-serif;
+                font-weight: 550;
+                font-size: 18px;
+                color:#110000;
+                background-color:#4eb5f1;
+                text-align:center;
+                transition: all 0.2s;
+            }
+
+            .listbtn:hover{
+                background-color:#4095c6;
+            }
+            @media all and (max-width:30em){
+                .listbtn{
+                    display:block;
+                    margin:0.2em auto;
+            }
+            }
+
     </style>
 
 </head>
 <body>
     
     <div id="sniplist">
-        <button onclick="gotosnippet(null)">EDITOR</button>
+        <button class="listbtn" onclick="gotosnippet(null)">GO TO EDITOR</button>
     </div>
 
 
     <script>
         
         $(document).ready(function() {
+
+            try {
+                var test = a.length;
+            } catch (error) {
+                alert("missing ./snippets/data.js");
+            }
 
             var buf_lang = 'none';
 
@@ -37,7 +73,7 @@
                     buf_lang =a.Data[key]['language'];
 
                     document.getElementById('sniplist').appendChild(document.createElement('hr'))
-                    var separe = document.createElement('h3');
+                    var separe = document.createElement('h2');
                     separe.innerHTML = a.Data[key]['language'];
                     document.getElementById('sniplist').appendChild(separe)
 
@@ -45,7 +81,6 @@
 
                 var button = document.createElement('button');
                 button.setAttribute("class", "listbtn");
-
 
                 // if a description is present
                 var _descr = a.Data[key]['description'];

@@ -1,6 +1,12 @@
 /***** REAL TIME EDITOR *****/
 window.onload = function() {
 
+    try {
+      var test = a.length;
+    } catch (error) {
+      alert("missing ./snippets/data.js");
+    }
+
     var iframe = document.querySelector("iframe");
     var code_areas = document.querySelectorAll('textarea');
   
@@ -49,7 +55,7 @@ $('#snippet').change(function () {
 /* SNIPPETS LOADER */
 function loadFiles(_sel) {
 
-  localStorage.setItem("selected", null);
+  //localStorage.setItem("selected", null);
 
   const pref = ''; // for different path
   var HTMLfile = pref + 'snippets/' + _sel + '/index.html';
@@ -86,14 +92,13 @@ function fireUpdate(){
   //TODO can I load without execute it? now js is double executed
 
 
-//TODO da testare il load su localStorage salvato
 try {
   var _selected = localStorage.getItem("selected");
   if(_selected!="null"){
-    console.log("Trovo salvato: " + _selected);
+    console.log("Riferimento: " + _selected);
     loadFiles(_selected);
   } else {
-    console.log("nulla di salvato");
+    console.log("Nessun riferimento salvato");
   }
 } catch (error) {
   
@@ -151,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const dy = e.clientY - y;
 
       const newLeftWidth = ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
-      leftSide.style.width = '${newLeftWidth}%';
+      leftSide.style.width = `${newLeftWidth}%`;
 
       resizer.style.cursor = 'col-resize';
       document.body.style.cursor = 'col-resize';
