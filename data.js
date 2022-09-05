@@ -4,7 +4,8 @@ var a = {
         "id": 1,
             "language": "HTML",
             "snippet": "sample 01",
-            "path": "sample01"
+            "path": "sample01",
+            "description": "questo è un esempio di descrizione testuale"
     }, {
         "id": 12,
             "language": "HTML",

@@ -66,7 +66,7 @@ body,html {
 .resizer {
   background-color: #cbd5e0;
   cursor: ew-resize;
-  height: 100vh;
+  height: 95vh;
   width: 5px;
 }
 
@@ -91,21 +91,27 @@ body,html {
   float: right;
   background-color: lightgray;
   resize: none;
-
-  align-items: right;
-
-  vertical-align: middle;
 }
 
-#codebar select {
+.codebar_sel {
   margin: 0;
+  /*
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  */
+  font-family: 'Fira Mono', monospace;
+  font-size: max(1vw, 15px);
+  border-radius: 10px;
+}
+
+.codebar_clr {
+  margin:0;
+  z-index: 2;
+
 }
 
 #codebar .credits {
-  position: absolute;
   width: fit-content;
   right: 10px;
   bottom: min(1vh, 3px);

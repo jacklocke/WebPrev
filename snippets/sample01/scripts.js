@@ -1,1 +1,1 @@
-console.log("X");
+console.log("X sample 01");

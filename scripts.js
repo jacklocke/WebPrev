@@ -1,5 +1,4 @@
 /***** REAL TIME EDITOR *****/
-
 window.onload = function() {
 
     var iframe = document.querySelector("iframe");
@@ -29,7 +28,6 @@ window.onload = function() {
 
 
 /***** COMBOBOX *****/
-
 $("#language").change(function () {
   $('#snippet').empty().append($('<option></option>').val('Select Snippet').html('Select Snippet'));
   var matchVal = $("#language option:selected").text();
@@ -43,7 +41,7 @@ $("#language").change(function () {
 $('#snippet').change(function () {
   //alert($(this).val());
   //var getsnippetval = $('#snippet').val();
-  //console.log( $('#snippet').val() );
+  console.log( "Salvo: " + $('#snippet').val() );
   localStorage.setItem("selected", $('#snippet').val());
   loadFiles($('#snippet').val());
 });
@@ -51,7 +49,7 @@ $('#snippet').change(function () {
 /* SNIPPETS LOADER */
 function loadFiles(_sel) {
 
-  //localStorage.setItem("selected", null)
+  localStorage.setItem("selected", null);
 
   const pref = ''; // for different path
   var HTMLfile = pref + 'snippets/' + _sel + '/index.html';
@@ -65,34 +63,65 @@ function loadFiles(_sel) {
       $.get(JSfile, function(JS_data) {
         $('#__JS').val(JS_data);
 
-        // Update iframe content on last file loaded
-        var htmlTA = document.getElementById("__HTML")
-        htmlTA.dispatchEvent(new Event('input', {bubbles:true}));
-        var jsTA = document.getElementById("__JS")
-        jsTA.dispatchEvent(new Event('input', {bubbles:true}));
-        var cssTA = document.getElementById("__CSS")
-        cssTA.dispatchEvent(new Event('input', {bubbles:true}));
+      // Update iframe content
+      setTimeout(function(){
+          fireUpdate();
+      }, 100);
 
       });
     });
-  }); 
+  });
+}
+
+function fireUpdate(){
+    // Update iframe content on last file loaded
+    var htmlTA = document.getElementById("__HTML")
+    htmlTA.dispatchEvent(new Event('input', {bubbles:true}));
+    var jsTA = document.getElementById("__JS")
+    jsTA.dispatchEvent(new Event('input', {bubbles:true}));
+    var cssTA = document.getElementById("__CSS")
+    cssTA.dispatchEvent(new Event('input', {bubbles:true}));
+}
 
   //TODO can I load without execute it? now js is double executed
 
 
-}
-
-//TODO load if localStorage ?
+//TODO da testare il load su localStorage salvato
 try {
   var _selected = localStorage.getItem("selected");
-  //loadFiles(_selected);
+  if(_selected!="null"){
+    console.log("Trovo salvato: " + _selected);
+    loadFiles(_selected);
+  } else {
+    console.log("nulla di salvato");
+  }
 } catch (error) {
   
 }
 
+// unselect snippet and clear 3 areas
+function snippetClear() {
+
+  localStorage.setItem("selected", null);
+
+  // unselect snippet in combobox
+  $("#language").val($("#language option:first").val());
+  $("#snippet").val($("#snippet option:first").val());
+
+    // Clear Areas
+    $('#__HTML').val("");
+    $('#__CSS').val("");
+    $('#__JS').val("");
+
+    // Update iframe content
+    setTimeout(function(){
+        fireUpdate();
+    }, 100);
+
+}
+
 
 /***** RESIZABLE *****/
-
 document.addEventListener('DOMContentLoaded', function () {
   // Query element
   const resizer = document.getElementById('dragSide');
@@ -122,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const dy = e.clientY - y;
 
       const newLeftWidth = ((leftWidth + dx) * 100) / resizer.parentNode.getBoundingClientRect().width;
-      leftSide.style.width = `${newLeftWidth}%`;
+      leftSide.style.width = '${newLeftWidth}%';
 
       resizer.style.cursor = 'col-resize';
       document.body.style.cursor = 'col-resize';
